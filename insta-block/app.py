@@ -20,14 +20,13 @@ class Blocker():
         
     def login(self):
         self.driver.get('https://www.instagram.com')
-        time.sleep(3)
+        time.sleep(self.wait)
         username_el = self.driver.find_element("name", "username")
         password_el = self.driver.find_element("name", "password")
         username_el.send_keys(self.username)
         password_el.send_keys(self.password)
         password_el.submit()
         
-        # Wait for the page to load after login
         time.sleep(self.wait)
 
         nn_btn = self.driver.find_element(By.CLASS_NAME, "x1yc6y37")
@@ -36,7 +35,16 @@ class Blocker():
         if nn_text_val == 'Not now':
             print('nn btn present')
             nn_btn.click()
+            
+        time.sleep(self.wait)
+            
+        notificaitons_nn_btn = self.driver.find_element(By.CLASS_NAME, "_a9_1")
+        notificaitons_nn_value = notificaitons_nn_btn.text
+        
+        if notificaitons_nn_value == 'Not Now':
+            notificaitons_nn_btn.click()
 
+        time.sleep(self.wait)
         
         print('should be logged in')
 
