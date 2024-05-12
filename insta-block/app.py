@@ -1,7 +1,6 @@
 from block_list import to_be_blocked
 from selenium import webdriver 
 from selenium.webdriver.common.by import By
-from bs4 import BeautifulSoup
 import getpass
 from argparse import ArgumentParser
 from time import sleep
@@ -49,7 +48,22 @@ class Blocker():
         
     def cycle_block_list(self):
         for i in to_be_blocked:
-            print(i['url'])
+            self.driver.get(i['url'])
+            sleep(self.wait)
+            elipse = self.driver.find_element(By.CLASS_NAME, "xurb0ha")
+            elipse.click()
+            sleep(2)
+            block_btn = self.driver.find_elements(By.CLASS_NAME, "_a9--")[0]
+            block_btn.click()
+            sleep(2)
+            block_confirm = self.driver.find_element(By.CLASS_NAME, "x1xlr1w8")
+            block_confirm.click()
+            sleep(2)
+            dismiss_btn = self.driver.find_element(By.CLASS_NAME, "x52vrxo")
+            dismiss_btn.click()
+            print(f"{i['name']} is now blocked :)")
+            sleep(2)
+            
 
 if __name__ == '__main__':
     parser = ArgumentParser(description='Block everyone on the block_list on your Instagram. Requires Firefox')
