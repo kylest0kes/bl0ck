@@ -31,7 +31,7 @@ class Blocker():
         username_el.send_keys(self.username)
         password_el.send_keys(self.password)
         password_el.submit()
-        
+        print("Logging in...")
         sleep(self.wait)
 
         nn_btn = self.driver.find_element(By.CLASS_NAME, "x1yc6y37")
@@ -49,9 +49,10 @@ class Blocker():
             notificaitons_nn_btn.click()
 
         sleep(self.wait)
-        print('should be logged in')
+        print('Logged in :)')
         
     def cycle_block_list(self):
+        print('Beginning block cycle')
         for i in to_be_blocked:
             self.driver.get(i['url'])
             sleep(self.wait)
