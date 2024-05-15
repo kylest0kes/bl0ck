@@ -30,23 +30,8 @@ class Blocker():
         password_el = self.driver.find_element("name", "password")
         username_el.send_keys(self.username)
         password_el.send_keys(self.password)
-        password_el.submit()
         print("Logging in...")
-        sleep(self.wait)
-
-        nn_btn = self.driver.find_element(By.CLASS_NAME, "x1yc6y37")
-        nn_text_val = nn_btn.text
-    
-        if nn_text_val == 'Not now':
-            nn_btn.click()
-            
-        sleep(self.wait)
-            
-        notificaitons_nn_btn = self.driver.find_element(By.CLASS_NAME, "_a9_1")
-        notificaitons_nn_value = notificaitons_nn_btn.text
-        
-        if notificaitons_nn_value == 'Not Now':
-            notificaitons_nn_btn.click()
+        password_el.submit()
 
         sleep(self.wait)
         print('Logged in :)')
@@ -59,7 +44,11 @@ class Blocker():
             elipse = self.driver.find_element(By.CLASS_NAME, "xurb0ha")
             elipse.click()
             sleep(2)
-            block_btn = self.driver.find_elements(By.CLASS_NAME, "_a9--")[0]
+            block_btns = self.driver.find_elements(By.CLASS_NAME, "_a9--")
+            block_btn = None
+            for b in block_btns:
+                if b.text == 'Block':
+                    block_btn = b
             block_btn.click()
             sleep(2)
             block_confirm = self.driver.find_element(By.CLASS_NAME, "x1xlr1w8")

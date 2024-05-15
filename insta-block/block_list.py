@@ -18,5 +18,13 @@ to_be_blocked = [
     {
         'name': 'Kylie Jenner',
         'url': 'https://www.instagram.com/kyliejenner/'
+    },
+    {
+        'name': 'United Airlines',
+        'url': 'https://www.instagram.com/united'
+    },
+    {
+        'name': 'Taylor Swift',
+        'url': 'https://www.instagram.com/taylorswift'
     }
 ]
