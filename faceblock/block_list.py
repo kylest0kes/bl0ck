@@ -18,5 +18,29 @@ to_be_blocked = [
     {
         'name': 'Boeing',
         'url': 'https://www.facebook.com/Boeing'
+    },
+    {
+        'name': 'Taylor Swift',
+        'url': 'https://www.facebook.com/TaylorSwift'
+    },
+    {
+        'name': 'Andrew Tate',
+        'url': 'https://www.facebook.com/profile.php?id=61550100372888'
+    },
+    {
+        'name': 'Jim Jordan',
+        'url': 'https://www.facebook.com/repjimjordan'
+    },
+    {
+        'name': 'Josh Hawley',
+        'url': 'https://www.facebook.com/HawleyMO'
+    },
+    {
+        'name': 'Mike Pence',
+        'url': 'https://www.facebook.com/mikepence'
+    },
+    {
+        'name': 'Nancy Pelosi',
+        'url': 'https://www.facebook.com/pelosiforcongress'
     }
 ]

@@ -14,6 +14,7 @@ class Blocker():
             option = webdriver.FirefoxOptions()
             option.add_argument("--headless")
             self.driver = webdriver.Firefox(options=option)
+            print('Running in headless mode...')
         else:
             self.driver = webdriver.Firefox()
         self.email = email
@@ -69,14 +70,11 @@ class Blocker():
             complete_btn.click()
             print(f"{i['name']} is now blocked :)")
             sleep(self.wait)
-                        
-           
-            
-        
+        print('Block cycle complete :)')
     
 if __name__ == '__main__':
     parser = ArgumentParser(description='Block everyone on the block_list on your Facebook. Requires Firefox')
-    parser.add_argument("--wait", type=float, default=6, help="Explicit wait time between page loads (default 8 seconds to be safe)")
+    parser.add_argument("--wait", type=float, default=8, help="Explicit wait time between page loads (default 8 seconds to be safe)")
     parser.add_argument("--headless", action="store_true", help="Run Selenium in headless mode (hide browser window)")
     args = parser.parse_args()
     
