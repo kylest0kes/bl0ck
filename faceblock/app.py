@@ -56,6 +56,19 @@ class Blocker():
                         block_btn = b
             block_btn.click()
             sleep(self.wait)
+            confirm_btn = self.driver.find_element(By.CSS_SELECTOR, '.x1n2onr6.x1ja2u2z.x78zum5.x2lah0s.xl56j7k.x6s0dn4.xozqiw3.x1q0g3np.xi112ho.x17zwfj4.x585lrc.x1403ito.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.xbxaen2.x1u72gb5.xtvsq51.x1r1pt67')
+            confirm_btn.click()
+            sleep(3)
+            complete_btns = self.driver.find_elements(By.CSS_SELECTOR, '.x1n2onr6.x1ja2u2z.x78zum5.x2lah0s.xl56j7k.x6s0dn4.xozqiw3.x1q0g3np.xi112ho.x17zwfj4.x585lrc.x1403ito.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.xn6708d.x1ye3gou.xtvsq51.x1r1pt67')
+            complete_btn = None
+            for c in complete_btns:
+                kids = c.find_elements(By.XPATH, './*')
+                for k in kids:
+                    if k.text == 'Confirm':
+                        complete_btn = c
+            complete_btn.click()
+            sleep(self.wait)
+                        
            
             
         
