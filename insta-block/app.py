@@ -27,8 +27,8 @@ class Blocker():
     def login(self):
         self.driver.get('https://www.instagram.com/')
         sleep(self.wait)
-        username_el = self.driver.find_element("name", "username")
-        password_el = self.driver.find_element("name", "password")
+        username_el = self.driver.find_element(By.NAME, "username")
+        password_el = self.driver.find_element(By.NAME, "password")
         username_el.send_keys(self.username)
         password_el.send_keys(self.password)
         print("Logging in...")

@@ -25,14 +25,25 @@ class Blocker():
         self.driver.quit()
         
     def login(self):
-        pass
+        self.driver.get('https://www.tiktok.com/login/phone-or-email/email')
+        sleep(self.wait)
+        email_el = self.driver.find_element(By.NAME, 'username')
+        password_el = self.driver.find_element(By.CSS_SELECTOR, '.tiktok-wv3bkt-InputContainer.etcs7ny1')
+        email_el.send_keys(self.email)
+        password_el.send_keys(self.password)
+        print('Logging in...')
+        password_el.submit()
+        sleep(self.wait)
+        print('Logged in :)')
 
     def cycle_block_list(self):
-        pass
+        print('Beginning block cycle')
+        for i in to_be_blocked:
+            pass
         
     
 if __name__ == '__main__':
-    parser = ArgumentParser(description='Block everyone on the block_list on your Instagram. Requires Firefox')
+    parser = ArgumentParser(description='Block everyone on the block_list on your Instagram. Requires Chrome')
     parser.add_argument("--wait", type=float, default=8, help="Explicit wait time between page loads (default 8 seconds to be safe)")
     parser.add_argument("--headless", action="store_true", help="Run Selenium in headless mode (hide browser window)")
     args = parser.parse_args()
