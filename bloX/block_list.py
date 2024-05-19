@@ -1,22 +1,10 @@
 to_be_blocked = [
     {
-        'name': '',
-        'url': ''
+        'name': 'Person 1',
+        'url': 'https://x.com/person1username'
     },
     {
-        'name': '',
-        'url': ''
-    },
-    {
-        'name': '',
-        'url': ''
-    },
-    {
-        'name': '',
-        'url': ''
-    },
-    {
-        'name': '',
-        'url': ''
+        'name': 'Person 2',
+        'url': 'https://x.com/person2username'
     }
 ]

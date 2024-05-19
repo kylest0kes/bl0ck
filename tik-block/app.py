@@ -1,6 +1,9 @@
 from block_list import to_be_blocked
 from selenium import webdriver 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import getpass
 from argparse import ArgumentParser
 from time import sleep
@@ -10,13 +13,15 @@ if sys.version[0] == '3': raw_input=input
 
 class Blocker():
     def __init__(self, email, password, wait=8, headless=False):
-        if headless:
-            option = webdriver.FirefoxOptions()
-            option.add_argument("--headless")
-            self.driver = webdriver.Firefox(options=option)
-            print('Running in headless mode...')
-        else:
-            self.driver = webdriver.Firefox()
+        # Cant run headless for tiktok right now because of CAPTCHA
+        # if headless:
+        #     option = webdriver.FirefoxOptions()
+        #     option.add_argument("--headless")
+        #     self.driver = webdriver.Firefox(options=option)
+        #     print('Running in headless mode...')
+        # else:
+        #     self.driver = webdriver.Firefox()
+        self.driver = webdriver.Firefox()
         self.email = email
         self.password = password
         self.wait = wait
@@ -32,25 +37,34 @@ class Blocker():
         email_el.send_keys(self.email)
         password_el.send_keys(self.password)
         print('Logging in...')
+        print('Be ready to complete the CAPTCHA!!!!!')
         password_el.submit()
         sleep(self.wait)
         print('Logged in :)')
+        sleep(12)
 
     def cycle_block_list(self):
         print('Beginning block cycle')
         for i in to_be_blocked:
-            pass
-        
+            self.driver.get(i['url'])
+            sleep(self.wait)
+            dots = self.driver.find_element(By.CSS_SELECTOR, 'css-usq6rj-DivMoreActions.ee7zj8d10')
+            actions = ActionChains(self.driver)
+            actions.move_to_element(dots).perform()
+            block_btn = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'css-51xc1n-DivActionItem.e1vhy9gd2')))
+            sleep(3)
+            block_btn.click()
+            
     
 if __name__ == '__main__':
-    parser = ArgumentParser(description='Block everyone on the block_list on your Instagram. Requires Chrome')
+    parser = ArgumentParser(description='Block everyone on the block_list on your Instagram. Requires Firefox')
     parser.add_argument("--wait", type=float, default=8, help="Explicit wait time between page loads (default 8 seconds to be safe)")
-    parser.add_argument("--headless", action="store_true", help="Run Selenium in headless mode (hide browser window)")
+    # parser.add_argument("--headless", action="store_true", help="Run Selenium in headless mode (hide browser window)")
     args = parser.parse_args()
     
-    email = input("Please enter your TikTok email: ")
-    password = getpass.getpass('Please enter your TikTok password: ')
-    blocker = Blocker(email=email, password=password, wait=args.wait, headless=args.headless)
+    # email = input("Please enter your TikTok email: ")
+    # password = getpass.getpass('Please enter your TikTok password: ')
+    blocker = Blocker(email='wkerr430@gmail.com', password='W@yn3K3rr', wait=args.wait, headless=False)
 
     blocker.login()
     blocker.cycle_block_list()

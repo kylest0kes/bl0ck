@@ -1,2 +1,0 @@
-- add try catch loops for errors
-    - if error, try to restart the code, and after a certain amount of errors, end the program
