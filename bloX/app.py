@@ -1,16 +1,29 @@
-from selenium import webdriver 
-from bs4 import BeautifulSoup
+from block_list import to_be_blocked
+from selenium import webdriver
+from selenium.webdriver.common.by import By 
+import getpass
+from argparse import ArgumentParser 
+from time import sleep
 import sys
 # for cross compatibility with python 2/3
-if sys.version[0] == '3': raw_input=input 
+if sys.version[0] == '3': raw_input=input
 
 class Blocker():
-    def __init__(self, email, password, wait=2):
-        self.Driver = webdriver.Firefox()
-        self.email = email
+    def __init__(self, username, password, wait=8, headless=False):
+        if headless: 
+            option = webdriver.FirefoxOptions()
+            option.addd_argument("--headless")
+            self.driver = webdriver.Firefox(options=option)
+            print('Running in headless mode...')
+        else: 
+            self.driver = webdriver.Firefox()
+        self.username = username
         self.password = password
-        self.profile_name = None 
         self.wait = wait
-    
-if __name__ == '__main__':
-    email = raw_input("Please enter your Twitter email: ")
+        
+    def quit(self):
+        self.driver.quit()
+        
+    def login(self):
+        pass
+        
