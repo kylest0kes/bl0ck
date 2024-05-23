@@ -39,19 +39,20 @@ class Blocker():
         print('Logging in...')
         print('Be ready to complete the CAPTCHA!!!!!')
         password_el.submit()
-        sleep(self.wait)
-        print('Logged in :)')
         sleep(12)
+        print('Logged in :)')
+        sleep(self.wait)
 
     def cycle_block_list(self):
         print('Beginning block cycle')
         for i in to_be_blocked:
             self.driver.get(i['url'])
             sleep(self.wait)
-            dots = self.driver.find_element(By.CSS_SELECTOR, 'css-usq6rj-DivMoreActions.ee7zj8d10')
+            dots = self.driver.find_element(By.CSS_SELECTOR, '.css-usq6rj-DivMoreActions.ee7zj8d10')
             actions = ActionChains(self.driver)
             actions.move_to_element(dots).perform()
-            block_btn = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'css-51xc1n-DivActionItem.e1vhy9gd2')))
+            sleep(3)
+            block_btn = self.driver.find_element(By.CSS_SELECTOR, '.css-51xc1n-DivActionItem.e1vhy9gd2')
             sleep(3)
             block_btn.click()
             
