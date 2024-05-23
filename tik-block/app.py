@@ -62,10 +62,9 @@ if __name__ == '__main__':
     # parser.add_argument("--headless", action="store_true", help="Run Selenium in headless mode (hide browser window)")
     args = parser.parse_args()
     
-    # email = input("Please enter your TikTok email: ")
-    # password = getpass.getpass('Please enter your TikTok password: ')
-    # blocker = Blocker(email=email, password=password, wait=args.wait, headless=False)
-    blocker = Blocker(email='wkerr430@gmail.com', password='W@yn3K3rr', wait=args.wait, headless=False)
+    email = input("Please enter your TikTok email: ")
+    password = getpass.getpass('Please enter your TikTok password: ')
+    blocker = Blocker(email=email, password=password, wait=args.wait, headless=False)
 
     blocker.login()
     blocker.cycle_block_list()
