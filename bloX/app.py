@@ -43,11 +43,37 @@ class Blocker():
         password_btn = self.driver.find_element(By.CSS_SELECTOR, '.css-175oi2r.r-sdzlij.r-1phboty.r-rs99b7.r-lrvibr.r-19yznuf.r-64el8z.r-1fkl15p.r-1loqt21.r-o7ynqc.r-6416eg.r-1ny4l3l')
         print('Logging in...')
         password_btn.click()
-        sleep(self.wait)
         print('Logged in :)')
+        sleep(6)
         
     def cycle_block_list(self):
-        print('cycle_block_list called :)')
+        for i in to_be_blocked:
+            self.driver.get(i['url'])
+            sleep(self.wait)
+            dots = self.driver.find_element(By.CSS_SELECTOR, '.css-175oi2r.r-sdzlij.r-1phboty.r-rs99b7.r-lrvibr.r-6gpygo.r-1wron08.r-2yi16.r-1qi8awa.r-1loqt21.r-o7ynqc.r-6416eg.r-1ny4l3l')
+            dots.click()
+            sleep(5)
+            block = None
+            btns = self.driver.find_elements(By.CSS_SELECTOR, '.css-175oi2r.r-1loqt21.r-18u37iz.r-1mmae3n.r-3pj75a.r-13qz1uu.r-o7ynqc.r-6416eg.r-1ny4l3l')
+            for b in btns:
+                kids = b.find_elements(By.XPATH, './*')
+                for k in kids:
+                    if "Block" in k.text:
+                        block = b 
+            block.click()
+            sleep(5)
+            confirm = None
+            confirm_btns = self.driver.find_elements(By.CSS_SELECTOR, '.css-175oi2r.r-sdzlij.r-1phboty.r-rs99b7.r-lrvibr.r-16y2uox.r-6gpygo.r-1udh08x.r-1udbk01.r-3s2u2q.r-peo1c.r-1ps3wis.r-cxgwc0.r-1loqt21.r-o7ynqc.r-6416eg.r-1ny4l3l')
+            for c in confirm_btns:
+                child = c.find_elements(By.XPATH, './*')
+                for ch in child:
+                    if ch.text == 'Block':
+                        confirm = c
+            confirm.click()
+            print(f"{i['name']} is now blocked :)")
+            sleep(self.wait)
+        print('Block cycle complete :)')
+            
     
 if __name__ == '__main__':
     parser = ArgumentParser(description='Block everyone on the block_list on your X account. Requires Firefox')
