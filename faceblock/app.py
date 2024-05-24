@@ -85,4 +85,3 @@ if __name__ == '__main__':
     blocker.login()
     blocker.cycle_block_list()
     blocker.quit()
-

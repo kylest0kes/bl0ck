@@ -55,6 +55,12 @@ class Blocker():
             block_btn = self.driver.find_element(By.CSS_SELECTOR, '.css-51xc1n-DivActionItem.e1vhy9gd2')
             sleep(3)
             block_btn.click()
+            sleep(5)
+            confirm_btn = self.driver.find_element(By.CSS_SELECTOR, '.e9flc1l5.css-3yqenn-Button-StyledButtonBlock.ehk74z00')
+            confirm_btn.click()
+            print(f"{i['name']} is now blocked :)")
+            sleep(5)
+        print('Block cycle complete :)')
             
     
 if __name__ == '__main__':
@@ -63,9 +69,11 @@ if __name__ == '__main__':
     # parser.add_argument("--headless", action="store_true", help="Run Selenium in headless mode (hide browser window)")
     args = parser.parse_args()
     
-    email = input("Please enter your TikTok email: ")
-    password = getpass.getpass('Please enter your TikTok password: ')
-    blocker = Blocker(email=email, password=password, wait=args.wait, headless=False)
+    # email = input("Please enter your TikTok email or username: ")
+    # password = getpass.getpass('Please enter your TikTok password: ')
+    # blocker = Blocker(email=email, password=password, wait=args.wait, headless=False)
+    
+    blocker = Blocker(email='jackm3h0ff5869', password='N3wT1kT0kP@55', wait=args.wait, headless=False)
 
     blocker.login()
     blocker.cycle_block_list()

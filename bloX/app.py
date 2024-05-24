@@ -73,8 +73,7 @@ class Blocker():
             print(f"{i['name']} is now blocked :)")
             sleep(self.wait)
         print('Block cycle complete :)')
-            
-    
+             
 if __name__ == '__main__':
     parser = ArgumentParser(description='Block everyone on the block_list on your X account. Requires Firefox')
     parser.add_argument("--wait", type=float, default=8, help='Explicit wait time between page loads (default to 8 seconds to be safe)')
@@ -88,4 +87,3 @@ if __name__ == '__main__':
     blocker.login()
     blocker.cycle_block_list()
     blocker.quit()
-        
