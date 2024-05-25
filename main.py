@@ -16,7 +16,7 @@ def main():
         {
             'type': 'list',
             'name': 'option',
-            'message': 'Choose which Social Media ',
+            'message': 'Choose which Social Media you would like to run the block script on: ',
             'choices': [
                 'Option 1',
                 'Option 2',
@@ -29,26 +29,33 @@ def main():
     ]
 
     print(logo)
-    
+        
     while True:
-        answers = prompt(questions)
-        choice = answers['option']
+            try:
+                answers = prompt(questions)
+                if answers is None:
+                    print("No option selected. Please try again.")
+                    continue
+                
+                choice = answers.get('option')
+                if not choice:
+                    print("Invalid selection. Please try again.")
+                    continue
 
-        if choice == 'Option 1':
-            print("You selected Option 1")
-            # Add functionality for Instagram here
-        elif choice == 'Option 2':
-            print("You selected Option 2")
-            # Add functionality for X here
-        elif choice == 'Option 3':
-            print("You selected Option 3")
-            # Add functionality for Facebook here
-        elif choice == 'Option 4':
-            print("You selected Option 4")
-            # Add functionality for TikTok here
-        elif choice == 'Exit':
-            print("Exiting the program.")
-            break
+                if choice == 'Option 1':
+                    print("You selected Option 1")
+                    # Add functionality for Option 1 here
+                elif choice == 'Option 2':
+                    print("You selected Option 2")
+                    # Add functionality for Option 2 here
+                elif choice == 'Option 3':
+                    print("You selected Option 3")
+                    # Add functionality for Option 3 here
+                elif choice == 'Exit':
+                    print("Exiting the program.")
+                    break
+            except Exception as e:
+                print(f"An error occurred: {e}. Please try again.")
 
 if __name__ == "__main__":
     main()
