@@ -1,4 +1,4 @@
-from block_list import to_be_blocked
+from tikblock.tt_block_list import to_be_blocked
 from selenium import webdriver 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
@@ -63,17 +63,15 @@ class Blocker():
         print('Block cycle complete :)')
             
     
-if __name__ == '__main__':
+def ttb():
     parser = ArgumentParser(description='Block everyone on the block_list on your Instagram. Requires Firefox')
     parser.add_argument("--wait", type=float, default=8, help="Explicit wait time between page loads (default 8 seconds to be safe)")
     # parser.add_argument("--headless", action="store_true", help="Run Selenium in headless mode (hide browser window)")
     args = parser.parse_args()
     
-    # email = input("Please enter your TikTok email or username: ")
-    # password = getpass.getpass('Please enter your TikTok password: ')
-    # blocker = Blocker(email=email, password=password, wait=args.wait, headless=False)
-    
-    blocker = Blocker(email='jackm3h0ff5869', password='N3wT1kT0kP@55', wait=args.wait, headless=False)
+    email = input("Please enter your TikTok email or username: ")
+    password = getpass.getpass('Please enter your TikTok password: ')
+    blocker = Blocker(email=email, password=password, wait=args.wait, headless=False)
 
     blocker.login()
     blocker.cycle_block_list()

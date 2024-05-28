@@ -1,4 +1,11 @@
+import sys
+sys.path.append("..")
 from PyInquirer import prompt, Separator
+
+from tikblock.tikblock import ttb
+from instablock.instablock import igb
+from bloX.blox import xb
+from faceblock.faceblock import fbb
 
 logo = """
  ______   _        _______  _______  _       
@@ -12,50 +19,53 @@ logo = """
 """
 
 def main():
+    print(logo)
+    
     questions = [
         {
             'type': 'list',
             'name': 'option',
             'message': 'Choose which Social Media you would like to run the block script on: ',
             'choices': [
-                'Option 1',
-                'Option 2',
-                'Option 3',
-                'Option 4',
+                'Instagram',
+                'Facebook',
+                'X',
+                'TikTok',
                 Separator(),
                 'Exit'
             ]
         }
     ]
-
-    print(logo)
-        
+    
     while True:
-            try:
-                answers = prompt(questions)
-                if answers is None:
-                    print("No option selected. Please try again.")
-                    continue
-                
-                choice = answers.get('option')
-                if not choice:
-                    print("Invalid selection. Please try again.")
-                    continue
+        try:
+            answers = prompt(questions)
+            if answers is None:
+                print("No option selected. Please try again.")
+                continue
+            
+            choice = answers.get('option')
+            if not choice:
+                print("Invalid selection. Please try again.")
+                continue
 
-                if choice == 'Option 1':
-                    print("You selected Option 1")
-                    # Add functionality for Option 1 here
-                elif choice == 'Option 2':
-                    print("You selected Option 2")
-                    # Add functionality for Option 2 here
-                elif choice == 'Option 3':
-                    print("You selected Option 3")
-                    # Add functionality for Option 3 here
-                elif choice == 'Exit':
-                    print("Exiting the program.")
-                    break
-            except Exception as e:
-                print(f"An error occurred: {e}. Please try again.")
+            if choice == 'Instagram':
+                print("You selected Instagram")
+                igb()
+            elif choice == 'Facebook':
+                print("You selected Facebook")
+                fbb()
+            elif choice == 'X':
+                print("You selected X")
+                xb()
+            elif choice == 'TikTok':
+                print("You selected TikTok")
+                ttb()
+            elif choice == 'Exit':
+                print("Exiting the program.")
+                break
+        except Exception as e:
+            print(f"An error occurred: {e}. Please try again.")
 
 if __name__ == "__main__":
     main()
