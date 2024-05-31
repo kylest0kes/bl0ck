@@ -35,8 +35,9 @@ class Blocker():
         username_el.send_keys(self.username)
         password_el.send_keys(self.password)
         password_el.submit()
-        sleep(self.wait)
+        sleep(12)
         self.driver.get('https://www.instagram.com')
+        sleep(2)
         account = self.driver.find_element(By.CSS_SELECTOR, ".x1i10hfl.xjbqb8w.x1ejq31n.xd10rxx.x1sy0etr.x17r0tee.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.x1ypdohk.xt0psk2.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd.x16tdsg8.x1hl2dhg.xggy1nq.x1a2a7pz.x5n08af.xwhw2v2.x6ikm8r.x10wlt62.xlyipyv.x9n4tj2._a6hd")
         
         if account:
