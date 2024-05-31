@@ -48,7 +48,7 @@ Ever wanted to block a huge list of people from social media with one action????
 
 6. Enter your username/email and password when it prompts you to
 
-7. Sit back and watch as your account is purged of shit!
+7. Sit back and watch as your account is purged!
 
     
 
@@ -69,6 +69,6 @@ limitations under the License.
 
 
 ## Disclaimers
-Again, this is "for demo proof of concept purposes only" and totallyyy is not intended to be used to block a large list of shitty people on these different websites.
+Again, this is "for demo proof of concept purposes only" and totallyyy is not intended to be used to block a large list of terrible people on these different websites.
 
 Also, while the application does ask for a username/email and pasword for the various sites, I do not have, and will never implement, any type of code to store your username/email and passwords anywhere.
