@@ -34,7 +34,12 @@ Ever wanted to block a huge list of people from social media with one action????
     cd /path/to/cloned/repo
     ```
 
-4. From the root of the Repo, run the 'main.py' file
+4. Install all the required packes from the 'requirements.txt' file
+    ```sh
+    pip install -r requirements.txt
+    ```
+
+5. From the root of the Repo, run the 'main.py' file
     ```sh
     python main.py
     ```
@@ -48,6 +53,7 @@ Ever wanted to block a huge list of people from social media with one action????
     
 
 ## Requirements
+* pip
 * selenium
 * python
 
