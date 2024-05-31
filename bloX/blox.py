@@ -21,12 +21,13 @@ class Blocker():
         self.password = password
         self.wait = wait
         
-    def quit(self):
+    def quit_driver(self):
         self.driver.quit()
         
     def login(self):
         self.driver.get('https://x.com/i/flow/login')
         sleep(self.wait)
+        print('Logging in...')
         username_el = self.driver.find_element(By.CSS_SELECTOR, '.r-30o5oe.r-1dz5y72.r-13qz1uu.r-1niwhzg.r-17gur6a.r-1yadl64.r-deolkf.r-homxoj.r-poiln3.r-7cikom.r-1ny4l3l.r-t60dpp.r-fdjqy7')
         username_el.send_keys(self.username)
         username_btns = self.driver.find_elements(By.CSS_SELECTOR, '.css-175oi2r.r-sdzlij.r-1phboty.r-rs99b7.r-lrvibr.r-ywje51.r-184id4b.r-13qz1uu.r-2yi16.r-1qi8awa.r-3pj75a.r-1loqt21.r-o7ynqc.r-6416eg.r-1ny4l3l')
@@ -40,13 +41,17 @@ class Blocker():
         sleep(self.wait)
         password_el = self.driver.find_element(By.CSS_SELECTOR, '.r-30o5oe.r-1dz5y72.r-13qz1uu.r-1niwhzg.r-17gur6a.r-1yadl64.r-deolkf.r-homxoj.r-poiln3.r-7cikom.r-1ny4l3l.r-t60dpp.r-fdjqy7')
         password_el.send_keys(self.password)
+        sleep(self.wait)
         password_btn = self.driver.find_element(By.CSS_SELECTOR, '.css-175oi2r.r-sdzlij.r-1phboty.r-rs99b7.r-lrvibr.r-19yznuf.r-64el8z.r-1fkl15p.r-1loqt21.r-o7ynqc.r-6416eg.r-1ny4l3l')
-        print('Logging in...')
         password_btn.click()
-        print('Logged in :)')
-        sleep(6)
+        sleep(self.wait)
+        account = self.driver.find_element(By.CSS_SELECTOR, ".css-175oi2r.r-1awozwy.r-sdzlij.r-6koalj.r-18u37iz.r-xyw6el.r-1loqt21.r-o7ynqc.r-6416eg.r-1ny4l3l")
+        
+        if account:        
+            print('Logged in :)')
         
     def cycle_block_list(self):
+        print('Beginning block cycle')
         for i in to_be_blocked:
             self.driver.get(i['url'])
             sleep(self.wait)
@@ -75,15 +80,22 @@ class Blocker():
         print('Block cycle complete :)')
              
 def xb():
-    parser = ArgumentParser(description='Block everyone on the block_list on your X account. Requires Firefox')
-    parser.add_argument("--wait", type=float, default=8, help='Explicit wait time between page loads (default to 8 seconds to be safe)')
-    parser.add_argument("--headless", action='store_true', help='Run Selenium in headless mode (hide browser window)')
-    args = parser.parse_args()
-    
-    username = input("Please enter yor X username: ")
-    password = getpass.getpass("Please enter your X password: ")
-    blocker = Blocker(username=username, password=password, wait=args.wait, headdless=args.headless)
-    
-    blocker.login()
-    blocker.cycle_block_list()
-    blocker.quit()
+    while True:
+        try:
+            parser = ArgumentParser(description='Block everyone on the block_list on your X account. Requires Firefox')
+            parser.add_argument("--wait", type=float, default=8, help='Explicit wait time between page loads (default to 8 seconds to be safe)')
+            parser.add_argument("--headless", action='store_true', help='Run Selenium in headless mode (hide browser window)')
+            args = parser.parse_args()
+            
+            username = input("Please enter yor X username: ")
+            password = getpass.getpass("Please enter your X password: ")
+            blocker = Blocker(username=username, password=password, wait=args.wait, headless=args.headless)
+            
+            blocker.login()
+            blocker.cycle_block_list()
+            blocker.quit_driver()
+            break
+        except Exception as e:
+            print("An error occurred. Waiting for 4 seconds and trying again.")
+            blocker.quit_driver()
+            sleep(4)

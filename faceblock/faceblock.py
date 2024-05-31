@@ -26,9 +26,9 @@ class Blocker():
         self.driver.quit()
         
     def login(self):
-        print("Logging in...")
         self.driver.get('https://www.facebook.com/login/')
         sleep(self.wait)
+        print("Logging in...")
         email_element = self.driver.find_element(By.ID, 'email')
         email_element.send_keys(self.email)
         password_element = self.driver.find_element(By.ID, 'pass')
@@ -91,6 +91,6 @@ def fbb():
             blocker.quit_driver()
             break
         except Exception as e:
-            print(f"An error occurred. Waiting for 4 seconds and trying again.")
+            print("An error occurred. Waiting for 4 seconds and trying again.")
             blocker.quit_driver()
             sleep(4)

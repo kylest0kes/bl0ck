@@ -19,7 +19,6 @@ logo = """
 """
 
 def main():
-    print(logo)
     
     questions = [
         {
@@ -39,6 +38,7 @@ def main():
     
     while True:
         try:
+            print(logo)
             answers = prompt(questions)
             if answers is None:
                 print("No option selected. Please try again.")

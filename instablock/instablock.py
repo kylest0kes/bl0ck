@@ -26,8 +26,8 @@ class Blocker():
         
     def login(self):
         self.driver.get('https://www.instagram.com/')
+        sleep(self.wait)
         print("Attempting to log in...")
-        sleep(4)
         username_el = self.driver.find_element(By.NAME, "username")
         password_el = self.driver.find_element(By.NAME, "password")
         username_el.send_keys(self.username)
@@ -79,7 +79,6 @@ def igb():
             blocker.quit_driver()
             break
         except Exception as e:
-            print(f"An error occurred. Waiting for 4 seconds and trying again.")
-            print(f"Error: {e}")
+            print("An error occurred. Waiting for 4 seconds and trying again.")
             blocker.quit_driver()
             sleep(4)
