@@ -42,12 +42,8 @@ class Blocker():
         sleep(12)
         self.driver.get('https://www.tiktok.com/')
         sleep(self.wait)
-        account = None
-        elements = self.driver.find_elements(By. CSS_SELECTOR, "e14l9ebt5.css-16h0vz7-StyledLink-StyledTmpLink.er1vbsz0")
-        for e in elements:
-            if e.get_attribute('data-e2e') == 'nav-profile':
-                account = e
-                
+        account = self.driver.find_element(By. CSS_SELECTOR, ".css-i6e8iz-ImgAvatar.e14l9ebt18")
+
         if account:
             print('Logged In :)')
 
@@ -70,7 +66,6 @@ class Blocker():
             sleep(5)
         print('Block cycle complete :)')
             
-    
 def ttb():
     while True:
         try:
