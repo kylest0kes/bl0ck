@@ -9,14 +9,8 @@ import sys
 if sys.version[0] == '3': raw_input=input 
 
 class Blocker():
-    def __init__(self, username, password, wait=8, headless=False):
-        if headless:
-            option = webdriver.FirefoxOptions()
-            option.add_argument("--headless")
-            self.driver = webdriver.Firefox(options=option)
-            print('Running in headless mode...')
-        else:
-            self.driver = webdriver.Firefox()
+    def __init__(self, username, password, wait=8):
+        self.driver = webdriver.Firefox()
         self.username = username
         self.password = password
         self.wait = wait
@@ -59,20 +53,14 @@ class Blocker():
             sleep(self.wait)
             print(f"{i['name']} is now blocked :)")
             sleep(self.wait)
-        print('Block cycle complete :)')
-            
+        print('Block cycle complete :)')     
 
 def igb():
     while True:
         try:
-            parser = ArgumentParser(description='Block everyone on the block_list on your Instagram. Requires Firefox')
-            parser.add_argument("--wait", type=float, default=8, help="Explicit wait time between page loads (default 8 seconds to be safe)")
-            parser.add_argument("--headless", action="store_true", help="Run Selenium in headless mode (hide browser window)")
-            args = parser.parse_args()
-            
             username = input("Please enter your Instagram username: ")
             password = getpass.getpass('Please enter your Instagram password: ')
-            blocker = Blocker(username=username, password=password, wait=args.wait, headless=args.headless)
+            blocker = Blocker(username=username, password=password)
 
             blocker.login()
             blocker.cycle_block_list()
