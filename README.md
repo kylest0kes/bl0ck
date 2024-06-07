@@ -47,6 +47,7 @@ Ever wanted to block a huge list of people from social media with one action????
 5. Select 1 of the 4 Social Media sites from a list (you can also exit)
 
 6. Enter your username/email and password when it prompts you to
+    - Note: If you are running the TikTok script, be ready to complete the Captcha that comes up after logging in.
 
 7. Sit back and watch as your account is purged!
 
